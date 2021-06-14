@@ -3,19 +3,26 @@
 const sum =(a, b) => {
     return a + b
 };
-module.exports = sum;
+// module.exports = sum;
 
 const sub =(a, b) => {
-    return a + b
+    return a - b
 };
-module.exports = sub;
+// module.exports = sub;
 
 const mult =(a, b) => {
-    return a + b
+    return a * b
 };
-module.exports = mult;
+// module.exports = mult;
 
 const div =(a, b) => {
-    return a + b
+    return a / b
 };
-module.exports = div;
+// module.exports = div
+
+module.exports = {
+    sum: sum,
+    sub: sub,
+    mult:mult,
+    div:div
+}

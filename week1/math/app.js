@@ -1,14 +1,15 @@
 
 
-const sumFunc = require('./math')
-console.log(sumFunc)
+const sumFunc = require('../math')
+console.log(sumFunc.sum(1,2 ))
 
-const subFunc = require('./math')
-console.log(subFunc)
+// const subFunc = require('../math')
+console.log(sumFunc.sub(2,1 ))
 
-const multFunc = require('./math')
-console.log(multFunc)
+// const multFunc = require('../math')
+ console.log(sumFunc.mult(2,2))
 
-const divFunc = require('./math')
-console.log(divFunc)
+// const divFunc = require('../math')
+ console.log(sumFunc.div(9,3))
+
 
