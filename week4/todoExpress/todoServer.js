@@ -4,25 +4,22 @@ const {v4: uuidv4}= require('uuid')
 
 const todos = [
     {
-    "name":"Mike",
-    "description":" go to gym",
-    "imgUrl":"",
-    "completed":"false",
-    "_id": "uuidv4"
+    name:"Mike",
+    description:" go to gym",
+    completed:false,
+    _id: uuidv4
 },
 {
-    "name":"John",
-    "description":" do laundry",
-    "imgUrl":"",
-    "completed":"true",
-    "_id": "uuidv4"
+    name:"John",
+    description:" do laundry",
+    completed:true,
+    _id: uuidv4
 },
 {
-    "name":"Sam",
-    "description":" do homework",
-    "imgUrl":"",
-    "completed":"true",
-    "_id": "uuidv4"
+    name:"Sam",
+    description:" do homework",
+    completed:true,
+    _id: uuidv4
 },
 ]
 todosServer.route('/') 
@@ -35,7 +32,8 @@ todosServer.route('/')
     todos.push(newTodo)
     res.send('Successfully added new todo')
 })
-bountyRouter.route('/:todoId')
+todosServer.route('/:todoId')
+
 .get((req, res ) =>{
     const todoId = req.params.todoId
     const foundtodo = todos.find(todo => todo._id === todoId)
@@ -56,7 +54,7 @@ bountyRouter.route('/:todoId')
     const todoIndex = todos.findIndex(todo => todo._id === todoId)
     const updatedTodo = Object.assign(todos[todoIndex], req.body)
 
-    res.send(`Bounties successfully updated to ${updatedTodo}`)
+    res.send(`Todos successfully updated to ${updatedTodo}`)
 })
 
 
