@@ -22,40 +22,38 @@ const todos = [
     _id: uuidv4
 },
 ]
-todosServer.route('/') 
-.get( (req,res) =>{
+todosServer.route('/').get( (req,res) =>{
     res.send(todos)
 })
-.post((req, res) =>{
+todosServer.route('/').post((req, res) =>{
     const newTodo = req.body;
     newTodo._id = uuidv4()
     todos.push(newTodo)
     res.send('Successfully added new todo')
 })
-todosServer.route('/:todoId')
-
-.get((req, res ) =>{
+todosServer.route('/:todoId').get((req, res ) =>{
     const todoId = req.params.todoId
     const foundtodo = todos.find(todo => todo._id === todoId)
     res.send(foundtodo)
 })
-.delete( (req, res) =>{
+todosServer.route('/:todoId').delete( (req, res) =>{
     const todoId = req.params.todoId
     const todoIndex = todos.findIndex(todo => todo._id === todoId)
-    bounties.splice(todoIndex, 1)
-
     res.send('Resource successfully deleted')
+    todos.splice(todoIndex, 1)
+
+    
 })
 
 
-
-.put( (req, res) =>{
+todosServer.route('/:todoId').put((req, res)=>{
     const todoId = req.params.todoId
     const todoIndex = todos.findIndex(todo => todo._id === todoId)
-    const updatedTodo = Object.assign(todos[todoIndex], req.body)
-
-    res.send(`Todos successfully updated to ${updatedTodo}`)
+    const updateTodo = Object.assign(todos[todoIndex], req.body)
+    res.send(updateTodo)
 })
+ 
 
 
 module.exports = todosServer
+
