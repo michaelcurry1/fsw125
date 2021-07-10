@@ -14,7 +14,9 @@ function App() {
 
   const addBounties = (newBounties) => {
     axios.post ('/bounties', newBounties)
-    .then(res => console.log(res))
+    .then(res =>{
+      setBounties(prevbounties =>[...prevbounties, res.data])
+    }
     .catch(err => console.log(err));
   };
   useEffect(() => {
