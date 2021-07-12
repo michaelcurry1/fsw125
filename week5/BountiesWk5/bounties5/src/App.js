@@ -16,8 +16,9 @@ function App() {
     axios.post ('/bounties', newBounties)
     .then(res =>{
       setBounties(prevbounties =>[...prevbounties, res.data])
+     
     }
-    .catch(err => console.log(err));
+   .catch(err => console.log(err));
   };
   useEffect(() => {
     getBounties();
