@@ -1,10 +1,10 @@
 import {useState} from 'react';
-import addBountiesForm from './addBountiesForm'
 
-function addBountiesForm({addBounties}){ 
 
-    const initialInputs = {type:'', amount:''};
-    const [inputs, setInputs] = useState(initInputs);
+function AddBountiesForm(props){ 
+
+    const initialInputs = {type:"", amount:""};
+    const [inputs, setInputs] = useState(initialInputs);
 
     const handleChange = (e) =>{
         const{name, value} = e.target;
@@ -12,17 +12,17 @@ function addBountiesForm({addBounties}){
     }
     const handleSubmit = (e) =>{
         e.preventDefault();
-
-        setInputs(initialinputs);
+        props.submit(inputs, props._id)
+        setInputs(initialInputs);
     }
     return(
         <form onSubmit={handleSubmit}>
             <input
-            type='text'
-            name='type'
+            type="text"
+            name="type"
             value={inputs.type}
             onChange={handleChange }
-            placeholder='Type'/>
+            placeholder="Type"/>
 
 
             <input
@@ -31,9 +31,9 @@ function addBountiesForm({addBounties}){
             value={inputs.amount}
             onChange={handleChange }
             placeholder='Amount'/>
-            <button>Add Bounty</button>
+            <button>Add Bounty{props.btnText}</button>
         </form>
     )
 }
 
-export default addBountiesForm;
+export default AddBountiesForm;

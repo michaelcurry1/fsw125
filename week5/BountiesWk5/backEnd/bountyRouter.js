@@ -29,7 +29,7 @@ bountyRouter.route('/')
     const newBounty = req.body;
     newBounty._id = uuidv4()
     bounties.push(newBounty)
-    res.send('Successfully added new bounty')
+    res.send(newBounty,'Successfully added new bounty')
 })
 bountyRouter.route('/:bountyId')
 .get((req, res ) =>{
