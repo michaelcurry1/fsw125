@@ -19,6 +19,7 @@ const bounties=[
     type:'jedi',
     _id: uuidv4()
     }
+   
 ]
 
 bountyRouter.route('/') 
