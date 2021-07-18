@@ -31,7 +31,7 @@ thingFinder.route('/').get( (req,res) =>{
     res.send(fruit)
 })
 thingFinder.route('/:fruitType').get((req, res ) =>{
-    const fruit = req.params.fruitType
+    const fruitType = req.params.fruitType
     const foundfruit = fruit.find(fruit => fruit.type === fruitType)
     res.send(foundfruit)
 
