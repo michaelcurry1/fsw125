@@ -1,0 +1,28 @@
+Live Meeting Fsw125 week 7 Overview.
+
+Reveiw of online material.
+week 6 error handling.
+
+They recomended an approach this there are many ways to do this.
+
+How next is setting up to do this.
+
+what is a status code? tells you a response message.
+
+status codes are only resp. messages.
+
+way to keep things simple.
+
+People do not make up there own status codes.
+
+for the most part any time you have server you need express . express handles error codes for you.
+
+About the assignment Thing finder it was query strings.
+
+basically went over weeks studies.
+
+Project 3 figuring what its about.
+
+week 7 introduces nothing more.
+
+Went over capstone project.

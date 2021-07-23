@@ -10,7 +10,7 @@ const bounties=[
     amount:20,
     type:'sith',
     _id: uuidv4()
-},
+    },
 
     {firstName:'john',
     lastName:'smith',
@@ -18,7 +18,22 @@ const bounties=[
     amount:25,
     type:'jedi',
     _id: uuidv4()
+    },
+    {firstName:'jake',
+    lastName:'johnson',
+    living:true,
+    amount:27,
+    type:'jedi',
+    _id: uuidv4()
+    },
+    {firstName:'ed',
+    lastName:'smokes',
+    living:true,
+    amount:31,
+    type:'jedi',
+    _id: uuidv4()
     }
+
    
 ]
 
@@ -30,8 +45,15 @@ bountyRouter.route('/')
     const newBounty = req.body;
     newBounty._id = uuidv4()
     bounties.push(newBounty)
-    res.send(newBounty,'Successfully added new bounty')
+    res.send(newBounty)
 })
+
+bountyRouter.route("/bounty").get((req, res)=>{
+    const type= req.query.type
+    const types= bounties.filter(bounty=> bounty.type.toLowerCase()===type.toLowerCase())
+    res.send(types)
+})
+
 bountyRouter.route('/:bountyId')
 .get((req, res ) =>{
     const bountyId = req.params.bountyId

@@ -7,6 +7,25 @@ import axios from 'axios';
 function App() {
 
   const [bounties, setBounties] = useState([]);
+  const[typeValue, setTypeValue] = useState("");
+
+  const arrTypes= [
+    {
+      value:"sith",
+      label:"sith"
+
+    },
+
+    {
+      value:"jedi",
+      label:"jedi"
+    },
+
+    {
+      value:"all",
+      label:"all"
+    }
+  ]
 
   const getBounties = () => {
     axios.get ('/bounties/')
@@ -17,6 +36,7 @@ function App() {
   const AddBounties = (newBounties) => {
     axios.post ('/bounties', newBounties)
     .then(res =>{
+      console.log(res)
       setBounties(prevbounties =>[...prevbounties, res.data])
      
     })
@@ -38,23 +58,41 @@ function App() {
     })
   }
 
+  function filterArr(e){
+    const filterArr= typeValue
+
+    filterArr==="all" ? getBounties(): axios.get(`/bounties/bounty?type=${filterArr}`)
+    .then(res => setBounties(res.data))
+  }
+
   useEffect(() => {
     getBounties();
   }, []);
+
+  const handleChange = (e) =>{
+    const{name, value} = e.target;
+    setTypeValue((value))
+}
 
 
 
 
 
   return (
-    <div className="bounties-container">
+    <div className="bountiesContainer">
+      <div style={{background:"brown",width:"100vw"}}>
       <AddBountiesForm 
         submit={AddBounties}
         btnText="Add Bounty Here"
       />
-      
-      {bounties.map(bounty => <Bounties5{...bounty} key={bounty.type} deleteBounties={deleteBounties} updateBounties={updateBounties}/>)}
-      
+      <input onChange= {handleChange}></input>
+      <button onClick= {filterArr}>filter</button>
+      </div>
+      <div style={{background:"blue",width:"100vw"}} className="centerList">
+
+      {bounties.map((bounty, index) =>
+         <Bounties5{...bounty} key={index} deleteBounties={deleteBounties} updateBounties={updateBounties}/>)}
+      </div>
      
     </div>
   );

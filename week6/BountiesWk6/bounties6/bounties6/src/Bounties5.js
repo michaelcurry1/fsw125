@@ -3,7 +3,7 @@ import AddBountiesForm from "./AddBountiesForm"
 
 
 function Bounties5 (props){
-    const {firstName,lastName,amount,_id} = props
+    const {firstName,lastName,amount,type,_id} = props
     const [editInput, setEditInput] = useState(false);
     return (
         <div>
@@ -12,6 +12,7 @@ function Bounties5 (props){
             <h1>{firstName}</h1>
             <h1>{lastName}</h1>
             <h2>{amount}</h2>
+            <h3>{type}</h3>
             <button onClick={()=> props.deleteBounties(_id)}>delete</button>
             <button onClick={()=> setEditInput(prevIn =>!prevIn)}>edit</button>
             </>
@@ -21,6 +22,7 @@ function Bounties5 (props){
             firstName={firstName}
             lastName={lastName}
             amount={amount}
+            type={type}
             _id={_id}
             submit={props.updateBounties}
             btnText= "submit update"/>
