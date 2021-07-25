@@ -6,7 +6,7 @@ import axios from 'axios';
 
 function App() {
 
-  const [cars, cars] = useState([]);
+  const [cars, setCars] = useState([]);
   const[typeValue, setTypeValue] = useState("");
 
   const arrTypes= [
@@ -28,7 +28,7 @@ function App() {
   ]
 
   const getCars = () => {
-    axios.get ('/cars/')
+    axios.get ('/cars')
     .then(res => setCars(res.data))
     .catch(err => console.log(err));
   };
@@ -54,7 +54,7 @@ function App() {
   const updateCars = (carId, updates) => {
     axios.put(`/cars/${carId}`,updates)
     .then(res =>{
-      setBounties(prevCars => prevCars.map(car => car._id !== carId ? car : res.data))
+      setCars(prevCars => prevCars.map(car => car._id !== carId ? car : res.data))
     })
   }
 
@@ -71,7 +71,7 @@ function App() {
 
   const handleChange = (e) =>{
     const{name, value} = e.target;
-    setTypeValue((value))
+    setTypeValue((value,name))
 }
 
 
@@ -80,7 +80,7 @@ function App() {
 
   return (
     <div className="carsContainer">
-      <div style={{background:"brown",width:"100vw"}}>
+      <div className="centerList" style={{background:"brown",width:"100vw"}}>
       <AddCarsForm 
         submit={AddCars}
         btnText="Add Car Here"
@@ -88,7 +88,9 @@ function App() {
       <input onChange= {handleChange}></input>
       <button onClick= {filterArr}>filter</button>
       </div>
-      <div style={{background:"blue",width:"100vw"}} className="centerList">
+      <div style={{backgroundImage:"url('https://images.unsplash.com/photo-1620814471489-b0034fe00dd4?ixid=MnwxMjA3fDB8MHxzZWFyY2h8MTB8fGZvcmQlMjBtdXN0YW5nfGVufDB8fDB8fA%3D%3D&ixlib=rb-1.2.1&auto=format&fit=crop&w=500&q=60')",
+      backgroundSize:"cover",backgroundRepeat:"no-repeat",
+      width:"100vw"}} className="centerList">
 
       {cars.map((car, index) =>
          <Cars7{...car} key={index} deleteCars={deleteCars} updateCars={updateCars}/>)}
